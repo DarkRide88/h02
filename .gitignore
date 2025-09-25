@@ -3,3 +3,4 @@ dist
 .idea
 /.idea
 src/videos
+__tests__
