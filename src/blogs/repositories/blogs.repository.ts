@@ -7,6 +7,10 @@ export const blogsRepository = {
     },
     findById(id: number) : Blog | null {
         return db.blogs.find((b) => +b.id === id) ?? null;
-    }
+    },
+    create(newBlog: Blog): Blog {
+        db.blogs.push(newBlog);
+        return newBlog;
+    },
 }
 

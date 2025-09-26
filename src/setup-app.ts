@@ -9,7 +9,7 @@ export const setupApp = (app: Express) => {
 
   // основной роут
   app.get('/', (req, res) => {
-    res.status(200).send('h02 RUUUUUUUUUUN');
+    res.status(200).send('h02');
   });
 
   app.use(BLOGS_PATH,blogsRouter);
