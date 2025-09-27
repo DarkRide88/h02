@@ -6,12 +6,13 @@ import {inputValidationResultMiddleware} from "../../core/middlewares/validation
 import {createBlogHandler} from "./handlers/create-blog.handler";
 import {blogInputDtoValidation} from "../validation/blog.input-dto.validation-middlewares";
 import {deleteBlogHandler} from "./handlers/delete-blog.handler";
+import {updateBlogHandler} from "./handlers/update-blog.handler";
 
 export const blogsRouter =  Router({});
 
 blogsRouter
     .get('', getBlogsListHandler)
     .get('/:id', idValidation,inputValidationResultMiddleware, getBlogHandler)
-    // .put('/:id', updateVideoHandler)
+    .put('/:id', blogInputDtoValidation, inputValidationResultMiddleware, updateBlogHandler)
     .delete('/:id', idValidation, inputValidationResultMiddleware,deleteBlogHandler)
     .post('/',blogInputDtoValidation, inputValidationResultMiddleware, createBlogHandler)
