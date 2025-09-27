@@ -6,6 +6,8 @@ import {getPostHandler} from "./handlers/get-post.handler";
 import {idValidation} from "../../core/middlewares/validation/params-id.validation-middleware";
 import {inputValidationResultMiddleware} from "../../core/middlewares/validation/input-validtion-result.middleware";
 import {createPostHandler} from "./handlers/create-post.handler";
+import {deletePostHandler} from "./handlers/delete-post.handler";
+import {postInputDtoValidation} from "../validation/post.input-dto.validation-middlewares";
 // import {createPostHandler} from "./handlers/create-Post.handler";
 // import {PostInputDtoValidation} from "../validation/Post.input-dto.validation-middlewares";
 // import {deletePostHandler} from "./handlers/delete-Post.handler";
@@ -17,5 +19,5 @@ postsRouter
     .get('', getPostListHandler)
     .get('/:id', idValidation,inputValidationResultMiddleware, getPostHandler)
     // .put('/:id', PostInputDtoValidation, inputValidationResultMiddleware, updatePostHandler)
-    // .delete('/:id', idValidation, inputValidationResultMiddleware,deletePostHandler)
-    .post('/', createPostHandler)
+    .delete('/:id', idValidation, inputValidationResultMiddleware,deletePostHandler)
+    .post('/',postInputDtoValidation,inputValidationResultMiddleware, createPostHandler)
