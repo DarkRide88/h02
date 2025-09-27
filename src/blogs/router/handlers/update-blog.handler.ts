@@ -2,7 +2,7 @@ import {blogsRepository} from "../../repositories/blogs.repository";
 import {createErrorMessages} from "../../../core/middlewares/validation/input-validtion-result.middleware";
 import {HttpStatus} from "../../../core/types/http-statuses";
 import { Response} from "express";
-import {RequestWithParams, RequestWithParamsAndBody} from "../../types/requestTypes";
+import {RequestWithParams, RequestWithParamsAndBody} from "../../../core/types/requestTypes";
 import {BlogInputModel} from "../../models/blogInputModel";
 
 

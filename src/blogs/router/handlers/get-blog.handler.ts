@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import {blogsRepository} from "../../repositories/blogs.repository";
 import {HttpStatus} from "../../../core/types/http-statuses";
 import {createErrorMessages} from "../../../core/utils/error.utils";
-import {RequestWithParams} from "../../types/requestTypes";
+import {RequestWithParams} from "../../../core/types/requestTypes";
 import {BlogViewModel} from "../../models/blogVIewModel";
 import {ErroreType} from "../../types/validationError";
 

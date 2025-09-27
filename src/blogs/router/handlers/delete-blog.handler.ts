@@ -1,4 +1,4 @@
-import {RequestWithParams} from "../../types/requestTypes";
+import {RequestWithParams} from "../../../core/types/requestTypes";
 import {Response} from "express";
 import {BlogViewModel} from "../../models/blogVIewModel";
 import {ErroreType} from "../../types/validationError";

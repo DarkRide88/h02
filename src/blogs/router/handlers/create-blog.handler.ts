@@ -1,4 +1,4 @@
-import {RequestWithBody} from "../../types/requestTypes";
+import {RequestWithBody} from "../../../core/types/requestTypes";
 import {BlogInputModel} from "../../models/blogInputModel";
 import {db} from "../../../db/in-memory.db";
 import {Blog} from "../../types/blog";
@@ -11,7 +11,7 @@ export function createBlogHandler (
     res:Response
 ) {
     const newBlog: Blog = {
-        id: (db.blogs.length ? db.blogs[db.blogs.length - 1].id + 1 : 1).toString(),
+        id: (db.blogs.length ? +db.blogs[db.blogs.length - 1].id + 1 : 1).toString(),
         name: req.body.name,
         description: req.body.description,
         websiteUrl: req.body.websiteUrl
