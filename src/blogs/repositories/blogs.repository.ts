@@ -12,5 +12,13 @@ export const blogsRepository = {
         db.blogs.push(newBlog);
         return newBlog;
     },
+    delete(id:number) : void {
+        const index = db.blogs.findIndex((b) => +b.id === id);
+        if (index === -1) {
+            throw new Error("Blog not  exist");
+        }
+        db.blogs.splice(index,1);
+        return;
+    }
 }
 

@@ -5,6 +5,7 @@ import {idValidation} from "../../core/middlewares/validation/params-id.validati
 import {inputValidationResultMiddleware} from "../../core/middlewares/validation/input-validtion-result.middleware";
 import {createBlogHandler} from "./handlers/create-blog.handler";
 import {blogInputDtoValidation} from "../validation/blog.input-dto.validation-middlewares";
+import {deleteBlogHandler} from "./handlers/delete-blog.handler";
 
 export const blogsRouter =  Router({});
 
@@ -12,5 +13,5 @@ blogsRouter
     .get('', getBlogsListHandler)
     .get('/:id', idValidation,inputValidationResultMiddleware, getBlogHandler)
     // .put('/:id', updateVideoHandler)
-    // .delete('/:id', deleteVideoHandler)
+    .delete('/:id', idValidation, inputValidationResultMiddleware,deleteBlogHandler)
     .post('/',blogInputDtoValidation, inputValidationResultMiddleware, createBlogHandler)
