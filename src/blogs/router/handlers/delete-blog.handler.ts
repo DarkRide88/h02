@@ -2,7 +2,7 @@ import {RequestWithParams} from "../../../core/types/requestTypes";
 import {Response} from "express";
 import {BlogViewModel} from "../../models/blogVIewModel";
 import {ErroreType} from "../../types/validationError";
-import {blogsRepository} from "../../repositories/blogs.in-memory-repository";
+import {blogsRepository} from "../../repositories/blogs.db-repository";
 import {HttpStatus} from "../../../core/types/http-statuses";
 import {createErrorMessages} from "../../../core/utils/error.utils";
 
@@ -12,7 +12,7 @@ export async function deleteBlogHandler (
     res: Response<BlogViewModel | ErroreType>) {
 
     try {
-        const id = parseInt(req.params.id);
+        const id = req.params.id;
         const blog = await blogsRepository.findById(id)
 
         if(!blog) {
