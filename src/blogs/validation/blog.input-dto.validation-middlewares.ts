@@ -23,10 +23,13 @@ const blogUrlValidation = body('websiteUrl')
     .withMessage('Length of websiteUrl is not correct')
     .matches(/^https:\/\/([a-zA-Z0-9_-]+\.)+[a-zA-Z0-9_-]+(\/[a-zA-Z0-9_-]+)*\/?$/)
     .withMessage("URL must match the right pattern")
-
+const blogCreatedAtValidation = body("createdAt")
+    .optional() // если поле необязательное при создании
+    .isISO8601().withMessage("createdAt must be a valid ISO 8601 date-time string")
 
 export const blogInputDtoValidation = [
     blogNameValidation,
     blogDescriptionValidation,
-    blogUrlValidation
+    blogUrlValidation,
+    blogCreatedAtValidation,
 ];
