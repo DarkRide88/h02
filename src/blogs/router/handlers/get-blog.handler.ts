@@ -1,12 +1,10 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import {blogsRepository} from "../../repositories/blogs.db-repository";
 import {HttpStatus} from "../../../core/types/http-statuses";
 import {createErrorMessages} from "../../../core/utils/error.utils";
 import {RequestWithParams} from "../../../core/types/requestTypes";
-import {BlogViewModel} from "../../models/blogVIewModel";
-import {ErroreType} from "../../types/validationError";
 import {mapToBlogViewModel} from "../mappers/map-to-blog-view-model";
-import {WithId} from "mongodb";
+
 
 
 export async function getBlogHandler (

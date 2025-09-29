@@ -1,7 +1,5 @@
 import {RequestWithBody} from "../../../core/types/requestTypes";
 import {BlogInputModel} from "../../models/blogInputModel";
-import {db} from "../../../db/in-memory.db";
-import {Blog} from "../../types/blog";
 import {blogsRepository} from "../../repositories/blogs.db-repository";
 import {HttpStatus} from "../../../core/types/http-statuses";
 import  {Response} from "express";
