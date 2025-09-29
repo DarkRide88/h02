@@ -15,7 +15,7 @@ export function updatePostHandler(
     if (!post) {
         res
             .status(HttpStatus.NotFound)
-            .send(createErrorMessages([{field:'id', message:'post not found'}]));
+            .send(createErrorMessages([{message:'post not found', field:'id'}]));
     }
 
     postsRepository.update(id, req.body);

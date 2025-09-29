@@ -16,7 +16,7 @@ export function getPostHandler (
     if(!post) {
         res
             .status(HttpStatus.NotFound)
-            .send(createErrorMessages([{ field: 'id', message: 'Post not found' }]));
+            .send(createErrorMessages([{ message: 'Post not found', field: 'id' }]));
         return
     }
 

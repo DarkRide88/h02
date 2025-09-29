@@ -1,19 +1,20 @@
 import {Blog} from "../types/blog";
 import {db} from "../../db/in-memory.db";
 import {BlogInputModel} from "../models/blogInputModel";
+import {WithId} from "mongodb";
 
 export const blogsRepository = {
-    findAll() : Blog[] {
+    async findAll() : Promise<WithId< Blog[]>> {
         return db.blogs;
     },
-    findById(id: number) : Blog | null {
+    async findById(id: number) : Promise<Blog | null> {
         return db.blogs.find((b) => +b.id === id) ?? null;
     },
-    create(newBlog: Blog): Blog {
+    async create(newBlog: Blog): Promise<Blog> {
         db.blogs.push(newBlog);
         return newBlog;
     },
-    delete(id:number) : void {
+    async delete(id:number) : Promise<void> {
         const index = db.blogs.findIndex((b) => +b.id === id);
         if (index === -1) {
             throw new Error("Blog not  exist");
@@ -21,7 +22,7 @@ export const blogsRepository = {
         db.blogs.splice(index,1);
         return;
     },
-    update(id:number, dto: BlogInputModel) : void  {
+    async update(id:number, dto: BlogInputModel) : Promise<void>  {
         const blog =  db.blogs.find((b) => +b.id === id);
 
         if (!blog) {

@@ -1,7 +1,7 @@
 import {db} from "../../db/in-memory.db";
 import {Post} from "../types/post";
 import {PostInputModel} from "../models/postInputModel";
-import {blogsRepository} from "../../blogs/repositories/blogs.repository";
+import {blogsInMemoryRepository} from "../../blogs/repositories/blogs.in-memory-repository";
 
 export const postsRepository = {
     findAll() : Post[] {
@@ -24,7 +24,7 @@ export const postsRepository = {
     },
     update(id:number, dto: PostInputModel) : void  {
         const post =  db.posts.find((b) => +b.id === id);
-        const blog = blogsRepository.findById(+dto.blogId)
+        const blog = blogsInMemoryRepository.findById(+dto.blogId)
         if (!post) {
             throw new Error('Post not exist');
         }

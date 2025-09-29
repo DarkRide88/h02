@@ -5,14 +5,14 @@ import {HttpStatus} from "../../../core/types/http-statuses";
 import {postsRepository} from "../../repositories/post.repository";
 import {Post} from "../../types/post";
 import {PostInputModel} from "../../models/postInputModel";
-import {blogsRepository} from "../../../blogs/repositories/blogs.repository";
+import {blogsInMemoryRepository} from "../../../blogs/repositories/blogs.in-memory-repository";
 import {createErrorMessages} from "../../../core/utils/error.utils";
 
 export function createPostHandler (
     req: RequestWithBody<PostInputModel>,
     res:Response
 ) {
-    const blog = blogsRepository.findById(+req.body.blogId)
+    const blog = blogsInMemoryRepository.findById(+req.body.blogId)
 
     if(!blog) {
         res
