@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import {blogsRepository} from "../../repositories/blogs.db-repository";
+import  {blogsService} from "../../application/blogs.service";
 import {HttpStatus} from "../../../core/types/http-statuses";
 import {createErrorMessages} from "../../../core/utils/error.utils";
 import {RequestWithParams} from "../../../core/types/requestTypes";
@@ -13,7 +13,7 @@ export async function getBlogHandler (
 
     try {
         const id = req.params.id;
-        const blog = await blogsRepository.findById(id)
+        const blog = await blogsService.findById(id)
 
         if(!blog) {
             res

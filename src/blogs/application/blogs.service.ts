@@ -1,15 +1,17 @@
 import {Blog} from "../types/blog";
 import {BlogInputModel} from "../models/blogInputModel";
-import {ObjectId, WithId} from "mongodb";
-import {blogsCollection} from "../../db/mongo.db";
 
-export const blogsRepository = {
+import {blogsRepository} from "../repositories/blogs.db-repository";
+import {WithId} from "mongodb";
+
+
+export const blogsService = {
     async findAll() : Promise<WithId<Blog>[]> {
-        return blogsCollection.find({}).toArray();
+        return blogsRepository.findAll();
 
     },
     async findById(id: string) : Promise<WithId<Blog> | null> {
-      return  blogsCollection.findOne({ _id: new ObjectId(id)})
+        return  blogsRepository.findById(id)
     },
     async create(newBlog: Blog): Promise<WithId<Blog>> {
         const insertResult = await blogsCollection.insertOne(newBlog);

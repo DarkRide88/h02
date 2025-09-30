@@ -1,4 +1,4 @@
-import {blogsRepository} from "../../repositories/blogs.db-repository";
+import  {blogsService} from "../../application/blogs.service";
 import {createErrorMessages} from "../../../core/middlewares/validation/input-validtion-result.middleware";
 import {HttpStatus} from "../../../core/types/http-statuses";
 import { Response} from "express";
@@ -13,13 +13,13 @@ export async function updateBlogHandler(
 ) {
     try {
         const id = req.params.id;
-        const blog = await blogsRepository.findById(id);
+        const blog = await blogsService.findById(id);
         if (!blog) {
             res
                 .status(HttpStatus.NotFound)
                 .send(createErrorMessages([{message:'Blog not found', field:'id' }]));
         }
-        await blogsRepository.update(id, req.body);
+        await blogsService.update(id, req.body);
         res.sendStatus(HttpStatus.NoContent);
     } catch(e: unknown) {
         res.sendStatus(HttpStatus.InternalServerError);
