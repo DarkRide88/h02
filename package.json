@@ -8,7 +8,8 @@
     "dev": "nodemon --inspect dist/index.js",
     "jest": "jest -i",
     "lint": "eslint --fix .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "ngrok": "ngrok http 5001"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +17,8 @@
   "packageManager": "pnpm@10.14.0",
   "dependencies": {
     "express": "^5.1.0",
-    "express-validator": "^7.2.1"
+    "express-validator": "^7.2.1",
+    "mongodb": "^6.20.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",

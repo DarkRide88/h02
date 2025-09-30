@@ -1,24 +1,26 @@
 import {RequestWithParams} from "../../../core/types/requestTypes";
 import {Response} from 'express'
-import {postsRepository} from "../../repositories/post.repository";
 import {HttpStatus} from "../../../core/types/http-statuses";
 import {createErrorMessages} from "../../../core/utils/error.utils";
 import {PostViewModel} from "../../models/postViewModel";
 import {ErroreType} from "../../../blogs/types/validationError";
+import {postsRepository} from "../../repositories/posts.db-repository";
+import {mapToPostViewModel} from "../mappers/map-to-post-view-model";
 
-export function getPostHandler (
+export async function getPostHandler (
     req: RequestWithParams<{ id: string }>,
-    res: Response<PostViewModel | ErroreType>): void {
+    res: Response<PostViewModel | ErroreType>): Promise<void> {
 
-    let id = parseInt(req.params.id);
-    let post = postsRepository.findById(id);
+    let id = req.params.id;
+    let post = await postsRepository.findById(id);
 
     if(!post) {
         res
             .status(HttpStatus.NotFound)
-            .send(createErrorMessages([{ field: 'id', message: 'Post not found' }]));
+            .send(createErrorMessages([{ message: 'Post not found', field: 'id' }]));
         return
     }
+    const postViewModel = mapToPostViewModel(post);
 
-    res.send(post);
+    res.send(postViewModel);
 }

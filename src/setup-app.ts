@@ -10,7 +10,7 @@ export const setupApp = (app: Express) => {
 
   // основной роут
   app.get('/', (req, res) => {
-    res.status(200).send('h02 RUN');
+    res.status(200).send('h02');
   });
   app.use(POSTS_PATH,postsRouter);
   app.use(BLOGS_PATH,blogsRouter);
